@@ -1,0 +1,23 @@
+.card__box{
+    border: 1px solid lightgray;
+}
+.product__image{
+    border: 1px solid rgb(221, 218, 218);
+}
+.product__image>img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.counterBOx{
+    border: 1px solid rgb(221, 218, 218);
+    min-width: 65px;
+    color: gray;
+}
+.product__box{
+    overflow: auto;
+    border-bottom: 1px solid lightgray;
+}
+.product__box::-webkit-scrollbar{
+    display: none;
+}

@@ -1,0 +1,25 @@
+.slick__product{
+    overflow: auto;
+}
+
+.slick__product>div{
+    flex-shrink: 0;
+    width: 30%;
+}
+
+@media screen and (max-width: 900px) {
+    .slick__product>div{
+        width: 40%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .slick__product>div{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .slick__product>div{
+        width: 80%;
+    }
+}
+    

@@ -1,0 +1,22 @@
+.bannr{
+    height: 250px;
+    width: 100%;
+    background-image: url('https://mironmahmud.com/greeny/assets/ltr/images/single-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.blureer{
+    height:250px;
+    width:100%;
+}
+.content-b{
+    position: absolute; 
+    margin-top: -150px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    

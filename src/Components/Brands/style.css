@@ -1,0 +1,9 @@
+
+
+.brandBox{
+    overflow: auto;
+}
+.brandItems{
+    width: 20%;
+    flex-shrink: 0;
+}

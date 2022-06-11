@@ -1,0 +1,14 @@
+.row__info{
+    display: grid;
+    grid-gap:20px;
+    grid-template-columns: repeat(3,auto);
+}
+
+@media screen and (max-width:600px) {
+    .row__info{
+        display: grid;
+        grid-gap:20px;
+        width:100%;
+        grid-template-columns: repeat(1,auto);
+    }
+}
