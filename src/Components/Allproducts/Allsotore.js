@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiRotateRight } from 'react-icons/bi'
+import { socket } from '../../socket/Socket'
 import Card from '../ProductCards/Card'
 import './style.css'
 
@@ -31,6 +32,24 @@ function Allsotore() {
           image:'https://mironmahmud.com/greeny/assets/ltr/images/product/05.jpg',
         },
       ])
+      const [currentPage, setcurrentPage] = useState(1)
+      const [totalPage, settotalPage] = useState(null)
+
+      useEffect(() => {
+        socket.emit('page',currentPage)
+        socket.on('result',(data)=>{
+          setrecentsoldProducts(data)
+        })
+        socket.on('totalPage',data=>{
+          settotalPage(data)
+        })
+      }, [currentPage])
+
+      const loadMore = (page) => {
+        setcurrentPage(page+1)
+      }
+      
+
   return (
     <div className='p-4 flex '>
         <div className='filer__container hidden sm:flex flex-col w-56 p-3'> 
@@ -57,13 +76,17 @@ function Allsotore() {
             <div className='flex items-center justify-center font-medium text-bold p-3 rounded-lg text-white bg-green-600'><p>Top 10 Products</p></div>
             <div className='gird_container mt-5 2xl:w-3/6 m-auto gap-5  '>
                 {
-                    recentsoldProducts.map((product,index)=>(
-                        <Card product={product} />
-                    ))
+                  recentsoldProducts.map((product,index)=>(
+                      <Card product={product} />
+                  ))
                 }
             </div>
-            <div className="text-center mt-5">
-                <button className="h-10 w-40 text-white font-medium rounded-md hover:bg-gray-300 duration-300 ease-in cursor-pointer bg-green-600  ">Load more items </button>
+            <div className="text-center flex items-center justify-center mt-5">
+                {
+                  totalPage?.map(page=>(
+                    <div onClick={()=>{loadMore(page)}} className={`h-8 mr-2 rounded-md hover:bg-black cursor-pointer text-white flex items-center justify-center w-10 ${currentPage===page+1? 'bg-green-600':'bg-gray-400'} `}>{page+1}</div>
+                  ))
+                }
             </div>
         </div>
     </div>

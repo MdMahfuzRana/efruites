@@ -2,21 +2,25 @@ import React, { useEffect, useState } from 'react'
 import './styles.css'
 import {RiDeleteBin6Line} from 'react-icons/ri'
 import Button from '../Buttons/Button'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { increaseQuantity, removeCard } from '../ProductCards/AddtoCardSlice'
 
 function Busket({totalPrice}) {
     const [text, settext] = useState('Healthy Vegetables - Organically Grown, 1Kg')
-    const [quantity, setquantity] = useState(0)
+    const [quantity, setquantity] = useState(1)
     const busket = useSelector(state=>state.busket.items)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         if(text?.length>40){
             settext(text.slice(0,40).trim()+'...')
         }
     }, [text])
-    const countIncrease = ( ) => {
+    const countIncrease = (product) => {
         if(quantity>10)return;
         setquantity(quantity+1)
+        dispatch(increaseQuantity(product))
     }
     const decrease = ( ) => {
         if(quantity<2) return;
@@ -28,7 +32,6 @@ function Busket({totalPrice}) {
  { busket.length>0?
        <>
         <div className='max-h-52 product__box'>
-
             {
                 busket?.map((product,index)=>(
             <div className='flex items-center w-full h-20'>
@@ -38,12 +41,12 @@ function Busket({totalPrice}) {
                 <div className='p-2 w-full sm:w-60  '>
                     <div className='cursor-pointer flex items-start justify-between text-fontColor font-medium text-xs'>
                         <p className='pr-1'>{text}</p>
-                        <RiDeleteBin6Line className='h-6 w-6'/>
+                        <RiDeleteBin6Line onClick={()=>{dispatch(removeCard(product))}} className='h-6 w-6'/>
                     </div>
                     <div className='flex items-center justify-between'>
                         <div className='h-7 mt-1 flex counterBOx items-center justify-between pl-2 pr-2 cursor-pointer'>
-                            <p onClick={countIncrease} className=' font-medium text-lg'>+</p>
-                            <p>{quantity}</p>
+                            <p onClick={()=>{countIncrease(product)}} className=' font-medium text-lg'>+</p>
+                            <p>{product?.quantity}</p>
                             <p onClick={decrease} className=' font-medium text-lg'>-</p>
                         </div>
                         <div className=' text-fontColor font-medium'>{product.price}</div>
@@ -58,7 +61,7 @@ function Busket({totalPrice}) {
         <div className='p-1'>
             <div className='text-fontColor flex items-center justify-between'>
                 <p className='font-medium'>Subtotal</p>
-                <p className='font-bold text-lg'>${totalPrice}</p>
+                <p className='font-bold text-lg'>${totalPrice.toFixed(2)}</p>
             </div>
             <div className=' flex  w-full justify-between items-center mt-3'>
                 <Button text='View Cart' />

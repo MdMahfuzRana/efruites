@@ -20,8 +20,8 @@ function Header() {
     console.log(busket)
 
     let user = JSON.parse(localStorage.getItem('user'))
-    let name = user.email.split("@")[0]
-    if(name.length > 8) {
+    let name = user?.email.split("@")[0]
+    if(name?.length > 8) {
         name = name.substring(0,8) + '...'
     }
 
@@ -52,7 +52,7 @@ function Header() {
                 <IconButtons itemlength={busket? busket.length:0} color="text-gray-500"  height='h-10' width='w-10' fontSize='text-2xl' background='bg-gray-200' icon={<RiShoppingBasket2Fill onClick={()=>{setopenBusket(openBusket?false:true)}} />} />
             <div className='hidden md:block' >
                 <p className='text-xs'>Total Price</p>
-                <p className='font-bold text-black '>${totalPrice}</p>
+                <p className='font-bold text-black '>${totalPrice.toFixed(2)}</p>
             </div>
             </div>
         </div>

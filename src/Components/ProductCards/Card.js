@@ -51,7 +51,7 @@ function Card({product}) {
         </div>
         <p className=' text-lg font-bold p-1 text-center'>{product?.title}</p>
         <p className=' text-lg font-bold text-lime-900 text-center'>{product?.price}/piece</p>
-        <div onClick={()=>{dispatch(addto(product))}} className='h-10 w-36 m-auto mt-2 mb-2 hover:bg-lime-700 hover:text-white cursor-pointer ease-in duration-300 rounded-lg p-2 bg-gray-200 text-neutral-600 font-bold flex items-center'>
+        <div onClick={()=>{dispatch(addto({...product,quantity:1}))}} className='h-10 w-36 m-auto mt-2 mb-2 hover:bg-lime-700 hover:text-white cursor-pointer ease-in duration-300 rounded-lg p-2 bg-gray-200 text-neutral-600 font-bold flex items-center'>
             <RiShoppingBasket2Fill className=' text-2xl mr-2' />
             Add to Cart
         </div>

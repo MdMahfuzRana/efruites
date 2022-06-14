@@ -7,27 +7,32 @@ import { Link } from 'react-router-dom'
 function RecentSoldItems() {
   const [recentsoldProducts, setrecentsoldProducts] = useState([
     {
-      title:'Fresh Green Chilis',
+      id: 1,
+      title:'Fresfsh Green Chilis',
       price: 1.99,
       image:'https://mironmahmud.com/greeny/assets/ltr/images/product/06.jpg',
     },
     {
-      title:'Fresh Green Chilis',
+      id: 2,
+      title:'aeFresh Green Chilis',
       price: 1.99,
       image:'https://mironmahmud.com/greeny/assets/ltr/images/product/07.jpg',
     },
     {
-      title:'Fresh Green Chilis',
+      id: 3,
+      title:'Frafeesh Green Chilis',
       price: 1.99,
       image:'https://mironmahmud.com/greeny/assets/ltr/images/product/09.jpg',
     },
     {
-      title:'Fresh Green Chilis',
+      id: 4,
+      title:'Fvbasefresh Green Chilis',
       price: 1.99,
       image:'https://mironmahmud.com/greeny/assets/ltr/images/product/10.jpg',
     },
     {
-      title:'Fresh Green Chilis',
+      id: 5,
+      title:'Fgearesh Gfefareen Chilis',
       price: 1.99,
       image:'https://mironmahmud.com/greeny/assets/ltr/images/product/05.jpg',
     },
