@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SpecialOfferCardContainer from '../../../SpecialOffer/SpecialOfferCardContainer'
 import DoubleBanners from '../../Banner/DoubleBanners'
 import SingleBanner from '../../Banner/SingleBanner'
@@ -16,6 +16,9 @@ import TopNbrs from '../../TopNiches/TopNbrs'
 import './style.css'
 
 function Home() {
+
+
+
   return (
     <div>
        <Header /> 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillShop } from 'react-icons/ai'
 import {FaArrowLeft,FaArrowRight} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import './style.css'
 
 function Slider() {
@@ -33,9 +34,6 @@ function Slider() {
         clearTimeout(timeOut)
       }
     }, [slide])
-    
-
-
   return (
     <div className='md:h-96 h-72 w-full'>
         <div className='h-full w-full '>
@@ -43,10 +41,12 @@ function Slider() {
             <div className={`slid__info absolute sm:-mt-72 -mt-56 sm:w-96 w-full sm:ml-10 p-2 text-left ${slide}`}>
                 <p className=' text-3xl font-bold'>{sliderData[current].title}</p>
                 <p className=' mt-3 hidden sm:flex text-xs font-medium from-neutral-400'>{sliderData[current].desc}</p>
+                <Link to='/productAll'   >
                 <div className='h-10 w-40 p-2 mt-3 rounded-md border-2 duration-300 ease-in border-solid text-lime-800 border-lime-800 hover:bg-lime-800 cursor-pointer hover:text-white flex justify-center items-center text-2xl'>
                     <AiFillShop  />
                     <p className=' text-lg ml-2' >Shop Now</p>
                 </div>
+                </Link>
             </div>
         </div>
         

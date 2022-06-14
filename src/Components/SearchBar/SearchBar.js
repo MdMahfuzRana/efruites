@@ -24,7 +24,7 @@ function SearchBar() {
         })
     }
   }, [text])
-  console.log(results)
+  
   return (
     <>
      <input onChange={(e)=>{settext(e.target.value)}} className='h-full w-full pl-3 bg-gray-200 rounded-md outline-none' placeholder='Search anything...' type='text' />

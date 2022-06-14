@@ -7,12 +7,17 @@ import Busket from '../Busket/Busket'
 import IconButtons from '../Buttons/IconButtons'
 import SearchBar from '../SearchBar/SearchBar'
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 
 function Header() {
     const [searchOpen, setsearchOpen] = useState(false)
     const [openBusket, setopenBusket] = useState(false)
-
+    const hearts = useSelector(state=>state.heart.items)
+    const busket = useSelector(state=>state.busket.items) 
+    const totalPrice = useSelector(state=>state.busket.total)
+    
+    console.log(busket)
 
     let user = JSON.parse(localStorage.getItem('user'))
     let name = user.email.split("@")[0]
@@ -42,12 +47,12 @@ function Header() {
             </div>
             <div className='items-center justify-center ml-2 mr-2 hidden md:flex  '>
                 <Link to="/wishlists">
-                    <IconButtons color="text-gray-500"  height='h-10' width='w-10' fontSize='text-2xl' background='bg-gray-200' icon={<BiHeart/>} />
+                    <IconButtons itemlength={hearts? hearts.length:0} color="text-gray-500"  height='h-10' width='w-10' fontSize='text-2xl' background='bg-gray-200' icon={<BiHeart/>} />
                 </Link>
-                <IconButtons color="text-gray-500"  height='h-10' width='w-10' fontSize='text-2xl' background='bg-gray-200' icon={<RiShoppingBasket2Fill onClick={()=>{setopenBusket(openBusket?false:true)}} />} />
+                <IconButtons itemlength={busket? busket.length:0} color="text-gray-500"  height='h-10' width='w-10' fontSize='text-2xl' background='bg-gray-200' icon={<RiShoppingBasket2Fill onClick={()=>{setopenBusket(openBusket?false:true)}} />} />
             <div className='hidden md:block' >
                 <p className='text-xs'>Total Price</p>
-                <p className='font-bold text-black '>$345.00</p>
+                <p className='font-bold text-black '>${totalPrice}</p>
             </div>
             </div>
         </div>
@@ -56,7 +61,7 @@ function Header() {
             <SearchBar />
         </div>:null}
 
-{openBusket?<Busket/>:null}
+{openBusket?<Busket totalPrice={totalPrice} />:null}
     </div>
   )
 }

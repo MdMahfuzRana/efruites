@@ -11,12 +11,13 @@ import { socket } from './socket/Socket';
 import WishList from './Components/Pages/wishList/WishList';
 import Chackout from './Components/Chackout/Chackout';
 import ProductsPagesAll from './Components/Allproducts/ProductsPagesAll';
+import { useSelector, useDispatch } from 'react-redux'
 
 function App() {
 
-  const [preview, setpreview] = useState(false)
   const [user, setuser] = useState(null)
   const localUser = localStorage.getItem('user')
+  const preview = useSelector(state => state.preview.value)
 
 
   const userHandleMemo = useMemo(() => {
@@ -47,18 +48,18 @@ function App() {
     socket.emit('user',localUser) // send user to server
     
   }, [userHandleMemo])
+
+
   
 
   return (
     <div className="App bg-gray-100">
       {
-        preview ? <Preview /> : null
+        preview? <Preview products={preview} /> : null
       }
       <Routes>
         <Route path="/" element={<Home/>} />
-
         <Route path={user? '/profile':'/login'} element={user? <div>Profile</div>:<Login/>} />
-
 {user?      
       null:<Route path="/ragister" element={<Ragister/>} />
         }

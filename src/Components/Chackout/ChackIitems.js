@@ -2,9 +2,13 @@ import React from 'react'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {BsFillEyeFill} from 'react-icons/bs'
 import {MdDelete} from 'react-icons/md'
+import { useSelector } from 'react-redux'
 import './style.css'
 
 function ChackIitems() {
+
+    const busket = useSelector(state=>state.busket.items)
+
   return (
     <div className='flex flex-col p-3 mt-10 '>
         <table className="table-list mt-10 m-auto ">
@@ -21,19 +25,21 @@ function ChackIitems() {
                 </tr>
             </thead>
             <tbody>
-                <tr className='h-20  ' >
+            {
+                busket?.map((product,index)=>(
+                    <tr className='h-20  ' >
                     <td className="border text-lg font-medium border-gray-300 border-solid text-center border-collapse">
-                        <h6>01</h6>
+                        <h6>{index+1}</h6>
                     </td>
                     <td className="table-image h-20 p-2 border border-gray-300 border-solid border-collapse">
-                        <img className='h-full w-full object-contain ' src="https://mironmahmud.com/greeny/assets/ltr/images/product/01.jpg" alt="product" />
+                        <img className='h-full w-full object-contain ' src={product?.image} alt="product" />
                     </td>
                     <td className="table-name text-lg p-1 font-bold border border-gray-300 border-solid border-collapse ">
-                        <h6>product name</h6>
+                        <h6>{product?.title}</h6>
                     </td>
                     <td className="table-price p-1 border border-gray-300 border-solid border-collapse">
                         <h6>
-                            $19<small>/kilo</small>
+                            {product?.price}<small>/kilo</small>
                         </h6>
                     </td>
                     <td className="table-desc w-60 text-left p-2 border border-gray-300 border-solid border-collapse">
@@ -56,6 +62,8 @@ function ChackIitems() {
                         </div>
                     </td>
                 </tr>
+                ))
+            }
             </tbody>
         </table>
         <div className="row mb-10">
