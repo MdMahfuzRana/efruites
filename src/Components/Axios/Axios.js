@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'https://shopbackendd.herokuapp.com'
 });
 
 export default Axios;   // export default Axios;

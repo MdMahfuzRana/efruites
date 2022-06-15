@@ -42,17 +42,17 @@ function App() {
     socket.on('connect',(io)=>{
       socket.emit('ow','halllow')
     });
-    if(token){
-      const out = jwt(token).exp;
-      if (Date.now() >= out*1000) {
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-        navigate('/login')
-      }
-    }else{
-      navigate('/login')
-    }
-  }, [localUser,token])
+    // if(token){
+    //   const out = jwt(token).exp;
+    //   if (Date.now() >= out*1000) {
+    //     localStorage.removeItem('token')
+    //     localStorage.removeItem('user')
+    //     navigate('/login')
+    //   }
+    // }else{
+    //   navigate('/login')
+    // }
+  }, [localUser])
 
   
   return (
